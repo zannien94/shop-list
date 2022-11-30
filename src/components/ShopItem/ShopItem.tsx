@@ -1,9 +1,6 @@
+import { IProduct } from '../../interfaces'
 import ProductList from '../ProductList'
 
-interface IProduct {
-  name: string
-  inBasket: boolean
-}
 interface IShopItem {
   productList: IProduct[]
   onClick: (product: IProduct) => void

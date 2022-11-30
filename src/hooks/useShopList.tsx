@@ -1,9 +1,6 @@
 import { useState } from 'react'
+import { IProduct } from '../interfaces'
 
-interface IProduct {
-  name: string
-  inBasket: boolean
-}
 interface IUseShopList {
   productsToBuy: IProduct[]
   productsInBasket: IProduct[]

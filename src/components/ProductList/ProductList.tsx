@@ -1,5 +1,6 @@
 import { IProduct } from '../../interfaces'
 import ProductListItem from '../ProductListItem'
+import { ProductListWrapper } from './ProductList styled'
 
 interface IProductList {
   productList: IProduct[]
@@ -8,17 +9,15 @@ interface IProductList {
 
 const ProductList = ({ productList, onClick }: IProductList) => {
   return (
-    <div>
-      <ul>
-        {productList.map(({ name, inBasket }) => (
-          <ProductListItem
-            text={name}
-            key={name}
-            onClick={() => onClick({ name, inBasket })}
-          />
-        ))}
-      </ul>
-    </div>
+    <ProductListWrapper>
+      {productList.map(({ name, inBasket }) => (
+        <ProductListItem
+          text={name}
+          key={name}
+          onClick={() => onClick({ name, inBasket })}
+        />
+      ))}
+    </ProductListWrapper>
   )
 }
 export default ProductList

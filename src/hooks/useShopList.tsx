@@ -4,7 +4,7 @@ import { IProduct } from '../interfaces'
 interface IUseShopList {
   productsToBuy: IProduct[]
   productsInBasket: IProduct[]
-  onProductClick(product: IProduct): void
+  onProductClick(name: string): void
 }
 
 export const initialShopList = [
@@ -21,14 +21,14 @@ export const useShopList = (initialState = initialShopList): IUseShopList => {
   const productsToBuy = productList.filter((product) => !product.inBasket)
   const productsInBasket = productList.filter((product) => product.inBasket)
 
-  const onProductClick = ({ name, inBasket }: IProduct): void => {
+  const onProductClick = (name: string): void => {
     const productIndex = productList.findIndex(
       (product) => product.name === name
     )
     const updateProductList = [...productList]
     const product = {
       ...updateProductList[productIndex],
-      inBasket: !inBasket,
+      inBasket: !updateProductList[productIndex].inBasket,
     }
     updateProductList.splice(productIndex, 1)
     updateProductList.push(product)

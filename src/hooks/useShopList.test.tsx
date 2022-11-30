@@ -13,7 +13,7 @@ describe('useShopList', () => {
     const [tomato, ...restShopList] = initialShopList
 
     act(() => {
-      result.current.onProductClick(tomato)
+      result.current.onProductClick(tomato.name)
     })
 
     expect(result.current.productsToBuy).toEqual(restShopList)
@@ -27,11 +27,13 @@ describe('useShopList', () => {
     const [tomato, ...restShopList] = initialShopList
     const newProductsToBuy = [...restShopList, tomato]
 
+    // add product to Basket
     act(() => {
-      // add product to Basket
-      result.current.onProductClick(tomato)
-      // remove product to Basket
-      result.current.onProductClick({ ...tomato, inBasket: true })
+      result.current.onProductClick(tomato.name)
+    })
+    // remove product to Basket
+    act(() => {
+      result.current.onProductClick(tomato.name)
     })
 
     expect(result.current.productsToBuy).toEqual(newProductsToBuy)

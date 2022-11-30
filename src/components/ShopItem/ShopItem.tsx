@@ -8,7 +8,7 @@ import {
 
 interface IShopItem {
   productList: IProduct[]
-  onClick: (product: IProduct) => void
+  onClick: (name: string) => void
   title: string
   className?: string
 }

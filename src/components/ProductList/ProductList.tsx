@@ -4,18 +4,14 @@ import { ProductListWrapper } from './ProductList styled'
 
 interface IProductList {
   productList: IProduct[]
-  onClick: (product: IProduct) => void
+  onClick: (name: string) => void
 }
 
 const ProductList = ({ productList, onClick }: IProductList) => {
   return (
     <ProductListWrapper>
-      {productList.map(({ name, inBasket }) => (
-        <ProductListItem
-          text={name}
-          key={name}
-          onClick={() => onClick({ name, inBasket })}
-        />
+      {productList.map(({ name }) => (
+        <ProductListItem text={name} key={name} onClick={() => onClick(name)} />
       ))}
     </ProductListWrapper>
   )

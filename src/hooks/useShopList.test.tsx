@@ -24,7 +24,8 @@ describe('useShopList', () => {
 
   it('should return empty productsInBasket and productsToBuy with defauls', () => {
     const { result } = renderHook(() => useShopList())
-    const [tomato] = initialShopList
+    const [tomato, ...restShopList] = initialShopList
+    const newProductsToBuy = [...restShopList, tomato]
 
     act(() => {
       // add product to Basket
@@ -33,7 +34,7 @@ describe('useShopList', () => {
       result.current.onProductClick({ ...tomato, inBasket: true })
     })
 
-    expect(result.current.productsToBuy).toEqual(initialShopList)
+    expect(result.current.productsToBuy).toEqual(newProductsToBuy)
     expect(result.current.productsInBasket).toEqual([])
   })
 })

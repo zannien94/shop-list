@@ -26,10 +26,12 @@ export const useShopList = (initialState = initialShopList): IUseShopList => {
       (product) => product.name === name
     )
     const updateProductList = [...productList]
-    updateProductList[productIndex] = {
+    const product = {
       ...updateProductList[productIndex],
       inBasket: !inBasket,
     }
+    updateProductList.splice(productIndex, 1)
+    updateProductList.push(product)
 
     setProductList(updateProductList)
   }

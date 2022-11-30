@@ -1,12 +1,6 @@
 import { renderHook, act } from '@testing-library/react'
+import { initialShopList, useShopList } from './useShopList'
 
-const initialShopList = [
-  { name: 'tomato', inBasket: false },
-  { name: 'kiwi', inBasket: false },
-  { name: 'apple', inBasket: false },
-  { name: 'banana', inBasket: false },
-  { name: 'pamelo', inBasket: false },
-]
 describe('useShopList', () => {
   it('should return defaults', () => {
     const { result } = renderHook(() => useShopList())
@@ -33,8 +27,12 @@ describe('useShopList', () => {
     const [tomato] = initialShopList
 
     act(() => {
+      // add product to Basket
       result.current.onProductClick(tomato)
+      // remove product to Basket
+      result.current.onProductClick({ ...tomato, inBasket: true })
     })
+
     expect(result.current.productsToBuy).toEqual(initialShopList)
     expect(result.current.productsInBasket).toEqual([])
   })
